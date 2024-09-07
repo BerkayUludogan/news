@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class HomeCustomContainer extends StatelessWidget {
   const HomeCustomContainer({
-    // required this.onTap,
     super.key,
     this.height,
     this.decoration,
@@ -15,11 +14,9 @@ class HomeCustomContainer extends StatelessWidget {
   final Decoration? decoration;
   final Color? color;
   final Widget? child;
-  // final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: onTap,
       child: Container(
         height: height,
         width: width,

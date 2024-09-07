@@ -1,10 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/feature/home/state/home_state.dart';
-import 'package:news/feature/home/view/home_detail_view.dart';
 import 'package:news/feature/home/widget/home_custom_container.dart';
 import 'package:news/product/constant/color/const_color.dart';
 import 'package:news/product/constant/strings/const_string.dart';
-import 'package:news/product/service/model/news.dart';
+import 'package:news/product/navigator/app_router.dart';
 
 class FirstListView extends StatelessWidget {
   const FirstListView({required this.state, super.key});
@@ -16,16 +16,10 @@ class FirstListView extends StatelessWidget {
       itemCount: 3,
       itemBuilder: (context, index) {
         final news = state.newsList![index];
-        final hoursAgo = _timeCalculation(news);
-        return GestureDetector(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => HomeDetailView(
-                state: state,
-                index: index, // Index'i parametre olarak gönderin
-              ),
-            ),
-          ),
+
+        return InkWell(
+          onTap: () =>
+              context.pushRoute(HomeDetailRoute(state: state, index: index)),
           child: Stack(
             children: [
               Padding(
@@ -60,7 +54,6 @@ class FirstListView extends StatelessWidget {
                       end: Alignment.bottomCenter,
                     ),
                   ),
-                  // onTap: () => print('$index'),
                 ),
               ),
               Positioned(
@@ -82,16 +75,5 @@ class FirstListView extends StatelessWidget {
         );
       },
     );
-  }
-
-  int _timeCalculation(News news) {
-    final timestamp = news.datetime;
-    final dateTime = DateTime.fromMillisecondsSinceEpoch(
-      timestamp! * 1000,
-    );
-    final now = DateTime.now();
-    final difference = now.difference(dateTime);
-    final hoursAgo = difference.inHours;
-    return hoursAgo;
   }
 }

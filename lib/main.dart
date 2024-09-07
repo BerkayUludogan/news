@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:news/feature/home/view/home_view.dart';
+import 'package:get_it/get_it.dart';
+import 'package:news/product/navigator/app_router.dart';
 
-void main() => runApp(const MyApp());
+part 'product/init/main_init.dart';
+
+void main() {
+  initInitializes();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final router = getIt<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router.config(),
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: HomeView(),
     );
   }
 }
