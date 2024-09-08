@@ -12,6 +12,7 @@ class FirstListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      primary: false,
       scrollDirection: Axis.horizontal,
       itemCount: 3,
       itemBuilder: (context, index) {

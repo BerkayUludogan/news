@@ -5,8 +5,10 @@ import 'package:news/feature/home/mixin/home_view_mixin.dart';
 import 'package:news/feature/home/state/home_state.dart';
 import 'package:news/feature/home/view_model/home_view_model.dart';
 import 'package:news/feature/home/widget/home_app_bar.dart';
+import 'package:news/feature/home/widget/home_card.dart';
 import 'package:news/feature/home/widget/home_listview.dart';
-import 'package:news/product/service/model/news.dart';
+import 'package:news/product/constant/color/const_color.dart';
+import 'package:news/product/constant/strings/const_string.dart';
 
 @RoutePage()
 class HomeView extends StatefulWidget {
@@ -27,6 +29,7 @@ class _HomeViewState extends State<HomeView> with HomeViewMixin {
             padding: EdgeInsets.all(12),
             child: Icon(
               Icons.search,
+              color: ConstColor.white,
             ),
           ),
         ],
@@ -35,32 +38,36 @@ class _HomeViewState extends State<HomeView> with HomeViewMixin {
     );
   }
 
-  BlocProvider<HomeViewModel> _body() {
+  Widget _body() {
     return BlocProvider(
       create: (context) => homeViewModel,
       child: BlocBuilder<HomeViewModel, HomeState>(
         builder: (context, state) {
           return !state.loading && mounted
               ? state.newsList != null
-                  ? Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.width * 0.7,
-                          child: FirstListView(state: state),
+                  ? CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            child: FirstListView(state: state),
+                          ),
                         ),
-                        SizedBox(
-                          height: 300,
-                          width: MediaQuery.of(context).size.width,
-                          child: const Card(
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(),
-                            color: Colors.white,
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              return HomeCard(
+                                state: state,
+                                index: index,
+                              );
+                            },
+                            childCount: 20,
                           ),
                         ),
                       ],
                     )
                   : const Center(
-                      child: Text('Haber Yok'),
+                      child: Text(ConstantStrings.noNews),
                     )
               : const Center(
                   child: CircularProgressIndicator(),
@@ -68,18 +75,5 @@ class _HomeViewState extends State<HomeView> with HomeViewMixin {
         },
       ),
     );
-  }
-
-  int _timeCalculation(News news) {
-    // final hoursAgo = _timeCalculation(news);
-
-    final timestamp = news.datetime!;
-    final dateTime = DateTime.fromMillisecondsSinceEpoch(
-      timestamp * 1000,
-    );
-    final now = DateTime.now();
-    final difference = now.difference(dateTime);
-    final hoursAgo = difference.inHours;
-    return hoursAgo;
   }
 }

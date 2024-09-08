@@ -6,7 +6,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({
     super.key,
     this.elevation = 1,
-    this.backgroundColor = ConstColor.white,
+    this.backgroundColor = ConstColor.red,
     this.title = ConstantStrings.title,
     this.centerTitle = true,
     this.actions,
@@ -19,9 +19,16 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: const IconThemeData(
+        color:
+            ConstColor.white, // Burada geri butonunun rengini değiştirirsiniz
+      ),
       elevation: elevation,
       backgroundColor: backgroundColor,
-      title: Text(title.toString()),
+      title: Text(
+        title.toString(),
+        style: const TextStyle(color: Colors.white),
+      ),
       centerTitle: centerTitle,
       actions: actions,
     );

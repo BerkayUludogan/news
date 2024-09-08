@@ -4,6 +4,7 @@ final class ConstantStrings {
 
   /// Home
   static const title = 'News';
+  static const noNews = 'Haber Yok';
 
   /// Image
   static const image = 'assets/images/news.jpg';
