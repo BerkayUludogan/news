@@ -8,4 +8,7 @@ final class ConstantStrings {
 
   /// Image
   static const image = 'assets/images/news.jpg';
+
+  /// Search
+  static const noHeadline = 'Başlık Bulunamadı';
 }

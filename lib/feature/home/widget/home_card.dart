@@ -36,7 +36,10 @@ class HomeCard extends StatelessWidget {
                 ),
               )
             else
-              Image.asset(ConstantStrings.image),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Image.asset(ConstantStrings.image),
+              ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(

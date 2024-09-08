@@ -39,7 +39,8 @@ abstract class _$AppRouter extends RootStackRouter {
 /// [HomeDetailView]
 class HomeDetailRoute extends PageRouteInfo<HomeDetailRouteArgs> {
   HomeDetailRoute({
-    required HomeState state,
+    News? news,
+    HomeState? state,
     required int index,
     Key? key,
     List<PageRouteInfo>? children,
@@ -61,12 +62,14 @@ class HomeDetailRoute extends PageRouteInfo<HomeDetailRouteArgs> {
 
 class HomeDetailRouteArgs {
   const HomeDetailRouteArgs({
-    required this.state,
+    this.news,
+    this.state,
     required this.index,
     this.key,
   });
+  final News? news;
 
-  final HomeState state;
+  final HomeState? state;
 
   final int index;
 

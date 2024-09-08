@@ -8,15 +8,17 @@ import 'package:news/product/service/model/news.dart';
 @RoutePage()
 class HomeDetailView extends StatelessWidget {
   const HomeDetailView({
-    required this.state,
     required this.index,
+    this.state,
+    this.news,
     super.key,
   });
-  final HomeState state;
+  final News? news;
+  final HomeState? state;
   final int index;
   @override
   Widget build(BuildContext context) {
-    final news = state.newsList![index];
+    final news = state!.newsList![index];
     final hoursAgo = _timeCalculation(news);
 
     return Scaffold(

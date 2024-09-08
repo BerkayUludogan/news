@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news/feature/home/state/home_state.dart';
 import 'package:news/feature/home/view/home_detail_view.dart';
 import 'package:news/feature/home/view/home_view.dart';
+import 'package:news/product/service/model/news.dart';
 
 part 'app_router.gr.dart';
 
