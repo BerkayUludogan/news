@@ -20,14 +20,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       iconTheme: const IconThemeData(
-        color:
-            ConstColor.white, // Burada geri butonunun rengini değiştirirsiniz
+        color: ConstColor.white,
       ),
       elevation: elevation,
       backgroundColor: backgroundColor,
       title: Text(
         title.toString(),
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: ConstColor.white),
       ),
       centerTitle: centerTitle,
       actions: actions,

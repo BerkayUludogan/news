@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/feature/home/state/home_state.dart';
-import 'package:news/feature/home/widget/home_app_bar.dart';
-import 'package:news/product/constant/strings/const_string.dart';
+import 'package:news/feature/home/widget/index.dart';
 import 'package:news/product/service/model/news.dart';
 
 @RoutePage()
@@ -10,10 +9,8 @@ class HomeDetailView extends StatelessWidget {
   const HomeDetailView({
     required this.index,
     this.state,
-    this.news,
     super.key,
   });
-  final News? news;
   final HomeState? state;
   final int index;
   @override
@@ -42,10 +39,7 @@ class HomeDetailView extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              if (news.image != '')
-                Image.network(news.image.toString())
-              else
-                Image.asset(ConstantStrings.image),
+              CustomImage(imageUrl: news.image),
               const SizedBox(
                 height: 20,
               ),

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/feature/home/state/home_state.dart';
-import 'package:news/product/constant/strings/const_string.dart';
+import 'package:news/feature/home/widget/index.dart';
 import 'package:news/product/navigator/app_router.dart';
 
 class HomeCard extends StatelessWidget {
@@ -25,21 +25,10 @@ class HomeCard extends StatelessWidget {
         color: Colors.white,
         child: Column(
           children: [
-            if (news.image != '')
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.network(
-                    news.image.toString(),
-                  ),
-                ),
-              )
-            else
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Image.asset(ConstantStrings.image),
-              ),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: CustomImage(imageUrl: news.image),
+            ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(

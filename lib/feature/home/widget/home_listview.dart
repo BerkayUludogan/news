@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/feature/home/state/home_state.dart';
-import 'package:news/feature/home/widget/home_custom_container.dart';
+import 'package:news/feature/home/widget/index.dart';
 import 'package:news/product/constant/color/const_color.dart';
-import 'package:news/product/constant/strings/const_string.dart';
 import 'package:news/product/navigator/app_router.dart';
+import 'package:news/product/widget/custom_container.dart';
 
 class FirstListView extends StatelessWidget {
   const FirstListView({required this.state, super.key});
@@ -25,25 +25,17 @@ class FirstListView extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: HomeCustomContainer(
+                child: CustomContainer(
                   width: 360,
                   color: ConstColor.white,
-                  child: news.image != ''
-                      ? Image.network(
-                          news.image.toString(),
-                          fit: BoxFit.cover,
-                        )
-                      : Image.asset(
-                          ConstantStrings.image,
-                          fit: BoxFit.fill,
-                        ),
+                  child: CustomImage(imageUrl: news.image),
                 ),
               ),
               Positioned(
                 bottom: 8,
                 right: 8,
                 left: 8,
-                child: HomeCustomContainer(
+                child: CustomContainer(
                   height: 200,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(

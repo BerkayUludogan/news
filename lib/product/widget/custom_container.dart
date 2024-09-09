@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeCustomContainer extends StatelessWidget {
-  const HomeCustomContainer({
+class CustomContainer extends StatelessWidget {
+  const CustomContainer({
     super.key,
     this.height,
     this.decoration,

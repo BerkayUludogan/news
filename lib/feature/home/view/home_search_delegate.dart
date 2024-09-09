@@ -2,6 +2,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/feature/home/state/home_state.dart';
+import 'package:news/feature/home/widget/index.dart';
 import 'package:news/product/constant/strings/const_string.dart';
 import 'package:news/product/navigator/app_router.dart';
 import 'package:news/product/service/model/news.dart';
@@ -58,9 +59,7 @@ class HomeSearchDelegate extends SearchDelegate<News?> {
           child: ListTile(
             title: Text(news.headline ?? ConstantStrings.noHeadline),
             leading: CircleAvatar(
-              child: news.image != ''
-                  ? Image.network(news.image.toString())
-                  : Image.asset(ConstantStrings.image),
+              child: CustomImage(imageUrl: news.image),
             ),
             onTap: () {
               context.pushRoute(HomeDetailRoute(state: state, index: index));
