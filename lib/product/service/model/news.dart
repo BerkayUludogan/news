@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:news/product/cache/core/model/cache_model.dart';
 import 'package:vexana/vexana.dart';
 
 part 'news.g.dart';
 
 @JsonSerializable()
-class News extends INetworkModel<News> with EquatableMixin {
+class News extends INetworkModel<News> with CacheModel<News>, EquatableMixin {
   News({
     this.category,
     this.datetime,
@@ -33,7 +34,7 @@ class News extends INetworkModel<News> with EquatableMixin {
   News fromJson(Map<String, dynamic> json) => News.fromJson(json);
 
   @override
-  Map<String, dynamic>? toJson() => _$NewsToJson(this);
+  Map<String, dynamic> toJson() => _$NewsToJson(this);
 
   @override
   List<Object?> get props =>
@@ -62,4 +63,7 @@ class News extends INetworkModel<News> with EquatableMixin {
       url: url ?? this.url,
     );
   }
+
+  @override
+  String get cacheId => id.toString();
 }

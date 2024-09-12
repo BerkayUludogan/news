@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:news/product/navigator/app_router.dart';
+import 'package:news/product/init/application_initialized.dart';
+import 'package:news/product/state/container/product_state_container.dart';
 
-part 'product/init/main_init.dart';
-
-void main() {
-  initInitializes();
-  runApp(MyApp());
+void main() async {
+  await ApplicationInitialize().make();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final router = getIt<AppRouter>();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: router.config(),
+      routerConfig: ProductStateContainer.router.config(),
       debugShowCheckedModeBanner: false,
       title: 'Material App',
     );
